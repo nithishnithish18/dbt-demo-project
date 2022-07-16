@@ -1,0 +1,18 @@
+version: 2
+
+models:
+  - name: stg_payment
+    description: staged payment data from stripe.
+    database: dbtworkshop
+    schema: stripe
+    columns: 
+      - name: payment_id
+        description: Primary key for payment payments.
+        tests:
+          - unique
+          - not_null
+      - name: status
+        description: '{{doc("payment_status")}}'
+        tests:
+          - accepted_values:
+              values: ['success','fail']
